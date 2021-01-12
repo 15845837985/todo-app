@@ -1,7 +1,9 @@
 <template>
         <div class="input-add">
         <input type="text" name="todo" v-model="todoContent" @keyup.enter="emitAddTodo" />
+        <!-- 绑定todoContent，给键盘回车键绑定emitAddTodo事件 -->
         <button @click="emitAddTodo">
+          <!-- 给按钮绑定emitAddTodo事件 -->
           <i class="plus"></i>
         </button>
       </div>
@@ -13,18 +15,24 @@ export default {
     name: "TodoAdd",
     setup(props, context) {
         const todoContent = ref("");
+        // 新建todoContent储存todo内容
         const emitAddTodo = () => {
+          // 定义emitAddTodo函数
             const todo = {
                 id: props.tid,
                 content: todoContent.value,
                 completed: false,
             };
+            // 定义todo对象，包含id为props中的tid；内容为todoContent.value（因为todoContent为ref所以需要通过.value访问）；完成状态初始为false
             context.emit("add-todo", todo);
+            // 通过context中的emit调用addTodo，其中传参为todo
             todoContent.value = "";
+            // 清空todoContent
         }
         return {
             todoContent,
             emitAddTodo,
+            // setup中定义的变量和函数必须在return中返回
         }
     }
 }

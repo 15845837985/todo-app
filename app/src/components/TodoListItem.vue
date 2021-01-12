@@ -1,5 +1,6 @@
 <template>
   <div class="todo-item" :class="{ done: todoItem.completed }">
+    <!-- 当todoItem为true时绑上class=done -->
     <label>
       <input type="checkbox" :checked="todoItem.completed" @click="$emit('change-state', $event)" />
       {{ todoItem.content }}
@@ -12,6 +13,7 @@
 export default {
     name: "TodoListItem",
     props: ["todoItem"],
+    // 用props接收todoList传来的todoItem
 };
 </script>
 

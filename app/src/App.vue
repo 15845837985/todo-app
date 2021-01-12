@@ -3,9 +3,10 @@
     <div class="container">
       <h1>欢迎使用Lv待办事项！</h1>
       <todo-add :tid="todos.length" @add-todo="addTodo" />
+      <!-- 给todo绑定属性tid以及addTodo事件 -->
       <todo-filter :selected="filter" @change-filter="filter = $event" />
       <todo-list :todos="filteredTodos" />
-      <!-- //在template中vue会把todos.value自动拆解，故这里直接写todos即可 -->
+      <!-- 在template中vue会把todos.value自动拆解，故这里直接写todos即可 -->
     </div>
   </main>
 </template>
@@ -21,7 +22,9 @@ export default {
   components: { TodoAdd, TodoFilter, TodoList },
   setup() {
     const todos = ref([]);
+    // 通过ref创建一个空的数组储存todo
     const addTodo = (todo) => todos.value.push(todo);
+    // 将新创建的todo加入todos
     const filter = ref("all");
     const filteredTodos = computed(() => {
       switch (filter.value) {
@@ -39,6 +42,7 @@ export default {
       addTodo,
       filter,
       filteredTodos,
+      // setup中定义的变量和函数必须在return中返回
     };
   },
 };
