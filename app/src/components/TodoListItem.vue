@@ -3,6 +3,7 @@
     <!-- 当todoItem为true时绑上class=done -->
     <label>
       <input type="checkbox" :checked="todoItem.completed" @click="$emit('change-state', $event)" />
+      <!-- 为复选框绑定checked属性=todoIem.completed，同时绑定点击切换状态事件 -->
       {{ todoItem.content }}
       <span class="check-button"></span>
     </label>

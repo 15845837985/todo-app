@@ -7,6 +7,9 @@
       @click="$emit('change-filter', filter.value)"
       :class="{ active: selected === filter.value }"
     >
+    <!-- 从filters中循环展示filter -->
+    <!-- 绑定Key为filter.value -->
+    <!-- 绑定点击事件，点击时切换filter，同时给选中的添加class:active（判断条件为selected === filter.value） -->
       {{ filter.label }}
     </span>
   </div>
@@ -16,13 +19,14 @@
 export default {
   name: "TodoFilter",
   props: ["selected"],
+  // 从父组件接收selected
   setup() {
     const filters = [
       { label: "全部", value: "all" },
       { label: "已完成", value: "done" },
       { label: "未完成", value: "todo" },
     ];
-
+  // 创建filters为静态对象数组，数组中每个对象包括label和value，value负责判断是否选中
     return {
       filters,
     };

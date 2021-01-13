@@ -9,7 +9,7 @@
       <!-- 从todos循环展示todo -->
       <!-- 绑定key为todo.id -->
       <!-- 绑定todoItem为todo -->
-      <!-- 绑定状态改变，todo的状态=触发事件的checked -->
+      <!-- 绑定状态改变事件，todo的状态=触发事件的checked -->
   </div>
 </template>
 

@@ -5,8 +5,10 @@
       <todo-add :tid="todos.length" @add-todo="addTodo" />
       <!-- 给todo绑定属性tid以及addTodo事件 -->
       <todo-filter :selected="filter" @change-filter="filter = $event" />
+      <!-- 绑定属性selected=filter确定已选中的，绑定切换筛选选项方法 -->
       <todo-list :todos="filteredTodos" />
-      <!-- 在template中vue会把todos.value自动拆解，故这里直接写todos即可 -->
+      <!-- 在template中vue会把filteredTodos.value自动拆解，故这里直接写filteredTodos即可 -->
+      <!-- 将筛选todos展示 -->
     </div>
   </main>
 </template>
@@ -26,6 +28,7 @@ export default {
     const addTodo = (todo) => todos.value.push(todo);
     // 将新创建的todo加入todos
     const filter = ref("all");
+    // 通过ref创建筛选项
     const filteredTodos = computed(() => {
       switch (filter.value) {
         case "done":
@@ -36,6 +39,7 @@ export default {
           return todos.value;
       }
     });
+    //创建筛选todos为计算属性，通过todo的completed进行筛选
 
     return {
       todos,
